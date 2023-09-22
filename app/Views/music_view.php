@@ -56,11 +56,7 @@
     </style>
 </head>
 <body>
-    <ul>
-        <?php foreach ($music as $song): ?>
-            <li><?php echo $song->title; ?></li>
-        <?php endforeach; ?>
-    </ul>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -90,8 +86,10 @@
     </button>
     <audio id="audio" controls autoplay></audio>
     <ul id="playlist">
+    <?php foreach ($music_view as $mus): ?>
         <li data-src="/your music src">music name</li>
     </ul>
+    <?php endforeach; ?>
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
