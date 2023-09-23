@@ -198,7 +198,7 @@
                     <div class="plus-icon">+</div>
                 </div>
                 <div class="ex-button">
-                <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
+               <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
                 </div>
                 <div class="play-link-container">
                 <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black; display: flex; align-items: center; justify-content: center;">
@@ -210,6 +210,8 @@
         </li>
     <?php endforeach; ?>
 </ul>
+
+
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
