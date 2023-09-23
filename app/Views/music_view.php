@@ -8,12 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f5f5f5;
-            padding: 20px;
+            padding: 200px;
         }
 
         h1 {
@@ -54,22 +56,47 @@
             color: #fff;
         }
                 /* Add this CSS to your stylesheet */
-        .plus-button {
-            background-color: #0D6EFD; /* Blue background */
-            width: 30px; /* Adjust the width as needed */
-            height: 30px; /* Adjust the height as needed */
-            display: inline-block;
-            margin-right: 8px; /* Add some spacing between the button and the title */
-            text-align: center;
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer;
-        }
+        .button-container {
+        display: flex;
+        align-items: center;
+    }
 
-        .plus-icon {
-            font-size: 24px; /* Adjust the font size as needed */
-            color: white; /* White plus sign */
-            line-height: 30px; /* Vertically center the plus sign */
-        }
+    .plus-button {
+    background-color: blue; /* Blue background */
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    display: inline-block;
+    margin-right: 10px; /* Add some spacing between the button and the title */
+    text-align: center;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+}
+
+.plus-icon {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: white; /* White plus sign */
+    line-height: 30px; /* Vertically center the plus sign */
+}
+    .ex-button {
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        margin-right: 8px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .ex-icon {
+        font-size: 24px;
+        color: blue; /* Change the color to blue for the trash bin icon */
+        line-height: 30px;
+    }
+
+    .play-link-container {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+    }
     </style>
 </head>
 <body>
@@ -88,7 +115,7 @@
                 <br>
             </div>
             <div class="modal-footer">
-                <a href="#" data-bs-dismiss="modal">Close</a>
+               
                 <a href="#" data-bs-toggle="modal" data-bs-target="#createPlaylist">Create New</a>
                
             </div>
@@ -141,9 +168,7 @@
                 <form action="upload_music" method="post" enctype="multipart/form-data">
                 </form>
             </div>
-            <div class="modal-footer">
-                <a href="#" data-bs-dismiss="modal">Close</a>
-            </div>
+            
         </div>
     </div>
 </div>
@@ -162,21 +187,29 @@
 
 
 
-
 <audio id="audio" controls autoplay></audio>
+
 <ul id="playlist">
+    
     <?php foreach ($music_view as $index => $music): ?>
         <li class="playlist-item" data-src="<?= $music['file_path'] ?>">
-            <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black;">
-                <?= $music['title'] ?>
-            </a>
-            <div class="plus-button">
-                <div class="plus-icon">+</div>
+            <div class="button-container">
+                <div class="plus-button">
+                    <div class="plus-icon">+</div>
+                </div>
+                <div class="ex-button">
+                <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
+                </div>
+                <div class="play-link-container">
+                <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black; display: flex; align-items: center; justify-content: center;">
+                    <?= $music['title'] ?>
+                </a>
+
+                </div>
             </div>
         </li>
     <?php endforeach; ?>
 </ul>
-
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -193,9 +226,7 @@
                         <input type="submit" name="add">
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+               
             </div>
         </div>
     </div>

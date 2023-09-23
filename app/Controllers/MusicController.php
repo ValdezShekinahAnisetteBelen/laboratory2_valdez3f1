@@ -32,7 +32,11 @@ class MusicController extends Controller
         echo 'Error inserting audio record: ' . $model->errors();
     }
 }
-       public function save() {
+public function delete($id) {
+  $this->model->delete($id);
+  return redirect()->to('/music_view');
+}
+public function save() {
         $data = [
             'title' => $this->request->getVar('title'),
             'artist' => $this->request->getVar('artist'),
