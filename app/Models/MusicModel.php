@@ -17,7 +17,6 @@ class MusicModel extends Model
 
     public function getAllMusic()
     {
-        // Replace 'music' with your actual table name in the query
         return $this->findAll();
     }
 

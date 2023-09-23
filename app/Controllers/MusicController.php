@@ -16,16 +16,7 @@ class MusicController extends Controller
 
     public function insertAudio()
 {
-    // Get a reference to the MusicModel
-    $model = new MusicModel();
-
-    // Actual data from your form or other sources
-    $title = $_POST['title']; // Replace with the actual title
-    $artist = $_POST['artist']; // Replace with the actual artist
-    $file_path = '/path/to/your/audio/file.mp3'; // Replace with the actual file path
-    $duration = 240; // Replace with the actual duration (in seconds)
-
-    // Create an array with the data
+    
     $data = [
         'title' => $title,
         'artist' => $artist,
@@ -41,7 +32,16 @@ class MusicController extends Controller
         echo 'Error inserting audio record: ' . $model->errors();
     }
 }
-
+       public function save() {
+        $data = [
+            'title' => $this->request->getVar('title'),
+            'artist' => $this->request->getVar('artist'),
+            'file_path' => $this->request->getVar('file_path'),
+            'duration' => $this->request->getVar('duration'),
+        ];
+        $this->model->save($data);
+        return redirect()->to('/music_view');
+       }
 
     public function music_view($music_view)
     {

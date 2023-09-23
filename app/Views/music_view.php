@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -56,11 +55,11 @@
         }
                 /* Add this CSS to your stylesheet */
         .plus-button {
-            background-color: blue; /* Blue background */
+            background-color: #0D6EFD; /* Blue background */
             width: 30px; /* Adjust the width as needed */
             height: 30px; /* Adjust the height as needed */
             display: inline-block;
-            margin-right: 10px; /* Add some spacing between the button and the title */
+            margin-right: 8px; /* Add some spacing between the button and the title */
             text-align: center;
             border-radius: 5px; /* Rounded corners */
             cursor: pointer;
@@ -74,6 +73,7 @@
     </style>
 </head>
 <body>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -90,10 +90,64 @@
             <div class="modal-footer">
                 <a href="#" data-bs-dismiss="modal">Close</a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#createPlaylist">Create New</a>
+               
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Upload Music</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <br>
+                <form action="/save" method="post" class="form-border">
+                    
+                <div class="form-group">
+                       
+                       <input type="file" class="form-control" name="file" id="file" onchange="updateFilePath()">
+                   </div>
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="<?= isset($pro['id']) ? $pro['id'] : '' ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>title</label>
+                        <input type="text" class="form-control" name="title" placeholder="title" value="<?= isset($pro['title']) ? $pro['title'] : '' ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>artist</label>
+                        <input type="text" class="form-control" name="artist" placeholder="artist" value="<?= isset($pro['artist']) ? $pro['artist'] : '' ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>file_path</label>
+                        <input type="text" class="form-control" name="file_path" id="display_file_path" placeholder="file_path" value="<?= isset($pro['file_path']) ? $pro['file_path'] : '' ?>">
+                        <input type="hidden" name="actual_file_path" id="actual_file_path">
+                    </div>
+                    <div class="form-group">
+                        <label>duration</label>
+                        <input type="number" class="form-control" name="duration" placeholder="duration" value="<?= isset($pro['duration']) ? $pro['duration'] : '' ?>">
+                    </div>
+                            <form action="/save" method="post" class="form-border" onsubmit="updateAudioSource()">
+            <!-- ... Your form fields ... -->
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Save Music">
+            </div>
+        </form>
+                </form>
+                <br>
+                <form action="upload_music" method="post" enctype="multipart/form-data">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-bs-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <form action="/" method="get">
     <input type="search" name="search" placeholder="search song">
     <button type="submit" class="btn btn-primary">search</button>
@@ -102,42 +156,82 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     My Playlist
 </button>
-<audio id="audio" controls autoplay></audio>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+    Upload Music
+</button>
 
+
+
+
+<audio id="audio" controls autoplay></audio>
 <ul id="playlist">
     <?php foreach ($music_view as $index => $music): ?>
         <li class="playlist-item" data-src="<?= $music['file_path'] ?>">
-            <a href="#" class="play-link" data-index="<?= $index ?>">
-                <div class="plus-button">
-                    <div class="plus-icon">+</div>
-                </div>
+            <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black;">
                 <?= $music['title'] ?>
             </a>
+            <div class="plus-button">
+                <div class="plus-icon">+</div>
+            </div>
         </li>
     <?php endforeach; ?>
 </ul>
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Select from playlist</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form action="/" method="post">
-                    <input type="hidden" id="musicID" name="musicID">
-                    <select name="playlist" class="form-control">
-                        <option value="playlist">playlist</option>
-                    </select>
-                    <input type="submit" name="add">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Select from playlist</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/" method="post">
+                        <input type="hidden" id="musicID" name="musicID">
+                        <select name="playlist" class="form-control">
+                            <option value="playlist">playlist</option>
+                        </select>
+                        <input type="submit" name="add">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+    function updateAudioSource() {
+        const audio = document.getElementById('audio');
+        const displayFilePathInput = document.getElementById('display_file_path');
+        const actualFilePathInput = document.getElementById('actual_file_path');
+
+        // Get the updated file path from the hidden input
+        const filePath = actualFilePathInput.value;
+
+        // Update the audio source and play it
+        audio.src = filePath;
+        audio.play();
+
+        return true; // Continue with the form submission
+    }
+</script>
+    <script>
+    function updateFilePath() {
+        const fileInput = document.getElementById('file');
+        const displayFilePathInput = document.getElementById('display_file_path');
+        const actualFilePathInput = document.getElementById('actual_file_path');
+
+        if (fileInput.files.length > 0) {
+            const selectedFile = fileInput.files[0];
+            const filePath = selectedFile.name; // Get the file name
+            const name = "http://localhost/laboratory2_valdez3f1/";
+            displayFilePathInput.value =  name.concat(filePath); // Update the visible input field
+            actualFilePathInput.value = filePath; // Store the actual file path in a hidden field
+        }
+    }
+</script>
+
 
 <script>
     $(document).ready(function () {
