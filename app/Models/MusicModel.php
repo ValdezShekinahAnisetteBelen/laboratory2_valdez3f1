@@ -15,6 +15,12 @@ class MusicModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['title', 'artist', 'file_path', 'duration'];
 
+    public function getAllMusic()
+    {
+        // Replace 'music' with your actual table name in the query
+        return $this->findAll();
+    }
+
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
@@ -38,4 +44,5 @@ class MusicModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    
 }

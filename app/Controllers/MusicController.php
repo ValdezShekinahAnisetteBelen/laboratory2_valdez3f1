@@ -49,7 +49,10 @@ class MusicController extends Controller
     }
     public function shekinah()
     {
-        return view('music_view');
+        // Assuming you have loaded the database library and the MusicModel in your constructor
+        $data['music_view'] = $this->model->getAllMusic(); // Replace with an appropriate method to fetch music data
+    
+        return view('music_view', $data);
     }
     public function index()
     {

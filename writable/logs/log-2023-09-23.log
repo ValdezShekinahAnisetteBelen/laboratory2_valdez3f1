@@ -1,0 +1,30 @@
+CRITICAL - 2023-09-23 02:23:53 --> Undefined variable $music_view
+in APPPATH\Views\music_view.php on line 89.
+ 1 APPPATH\Views\music_view.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $music_view', 'C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\music_view.php', 89)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\music_view.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('music_view', [], true)
+ 5 APPPATH\Controllers\MusicController.php(52): view('music_view')
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->shekinah()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-23 02:25:39 --> Call to undefined method App\Models\MusicModel::getAllMusic
+in SYSTEMPATH\Model.php on line 873.
+ 1 APPPATH\Controllers\MusicController.php(53): CodeIgniter\Model->__call('getAllMusic', [])
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->shekinah()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-23 02:26:23 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Models\MusicModel.php on line 43.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(285): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Models\\MusicModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(263): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\MusicModel')
+ 3 APPPATH\Controllers\MusicController.php(12): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\MusicModel')
+ 4 SYSTEMPATH\CodeIgniter.php(891): App\Controllers\MusicController->__construct()
+ 5 SYSTEMPATH\CodeIgniter.php(485): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
