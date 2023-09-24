@@ -17,7 +17,7 @@ class MusicModel extends Model
 
     public function hasReferencesInMusicPlaylists($musicId)
     {
-        // Check if there are any references to the given music ID in the music_playlists table
+        
         return $this->db->table('music_playlists')
             ->where('music_id', $musicId)
             ->countAllResults() > 0;
@@ -25,7 +25,7 @@ class MusicModel extends Model
 
     public function removeReferencesInMusicPlaylists($musicId)
     {
-        // Remove references to the given music ID in the music_playlists table
+
         $this->db->table('music_playlists')
             ->where('music_id', $musicId)
             ->delete();

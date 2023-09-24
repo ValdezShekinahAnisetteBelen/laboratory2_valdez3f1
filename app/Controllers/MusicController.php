@@ -5,65 +5,38 @@ use CodeIgniter\Controller;
 
 class MusicController extends Controller
 {
-    private $model;
+    private $music_model;
     private $playlist_model;
+    private $playlist_track;
+    private $db;
     public function __construct()
     {
-        $this->model = new \App\Models\MusicModel();
+        $this->music_model = new \App\Models\MusicModel();
         $this->playlist_model = new \App\Models\PlaylistsModel();
+        $this->playlist_track = new \App\Models\MusicPlayModel();
+        $this->db = \Config\Database::connect();
+        helper('form');
     }
 
-    public function insertAudio()
+    public function index()
     {
-        $title = $this->request->getVar('title');
-        $artist = $this->request->getVar('artist');
-        $file_path = $this->request->getVar('file_path');
-        $duration = $this->request->getVar('duration');
-
+        // Fetch music data from the model using the getAllMusic method
+        $musicData = $this->music_model->findAll();
+        $playlist_model = $this->playlist_model->findAll();
+        // var_dump($musicData);
+        // Pass the music data to your view.
         $data = [
-            'title' => $title,
-            'artist' => $artist,
-            'file_path' => $file_path,
-            'duration' => $duration,
-            'created_at' => date('Y-m-d H:i:s')
+            'music_view' => $musicData,
+            'playlist_model' => $playlist_model,
+            
         ];
+        // var_dump($data['music_view']);
 
-        if ($this->model->insert($data)) {
-            echo 'Audio record inserted successfully.';
-        } else {
-            echo 'Error inserting audio record: ' . $this->model->errors();
-        }
+        return view('music_view', $data);
     }
 
-    public function delete($id)
-    {
-        // Check if there are any references in the music_playlists table
-        $referencesExist = $this->model->hasReferencesInMusicPlaylists($id);
-    
-        if ($referencesExist) {
-            // If references exist, remove them first
-            $this->model->removeReferencesInMusicPlaylists($id);
-        }
-    
-        // Now, delete the record by ID from the music table
-        $this->model->delete($id);
-    
-        return redirect()->to('/music_view');
-    }
-    public function save()
-    {
-        // Get the data from your form or request
-        $data = [
-            'title' => $this->request->getVar('title'),
-            'artist' => $this->request->getVar('artist'),
-            'file_path' => $this->request->getVar('file_path'),
-            'duration' => $this->request->getVar('duration'),
-        ];
 
-        // Save or update the record using $this->model
-        $this->model->save($data);
-        return redirect()->to('/music_view');
-    }
+
     public function saveCreate()
     {
         $validation = \Config\Services::validation();
@@ -89,35 +62,138 @@ class MusicController extends Controller
             return redirect()->back();
         }
     }
-    public function index()
+    public function save()
     {
-        // Fetch music data from the model using the getAllMusic method
-        $musicData = $this->model->findAll();
-        $playlist_model = $this->playlist_model->findAll();
-
-        // Pass the music data to your view.
+        // Get the data from your form or request
         $data = [
-            'music_view' => $musicData,
-            'playlist_model' => $playlist_model,
+            'title' => $this->request->getVar('title'),
+            'artist' => $this->request->getVar('artist'),
+            'file_path' => $this->request->getVar('file_path'),
+            'duration' => $this->request->getVar('duration'),
         ];
 
-        return view('music_view', $data);
+        // Save or update the record using $this->request
+        $this->music_model->save($data);
+        return redirect()->to('/music_view');
+    }
+    // public function insertAudio()
+    // {
+    //     $title = $this->music_model->getVar('title');
+    //     $artist = $this->music_model->getVar('artist');
+    //     $file_path = $this->music_model->getVar('file_path');
+    //     $duration = $this->music_model->getVar('duration');
+
+    //     $data = [
+    //         'title' => $title,
+    //         'artist' => $artist,
+    //         'file_path' => $file_path,
+    //         'duration' => $duration,
+    //         'created_at' => date('Y-m-d H:i:s')
+    //     ];
+
+    //     if ($this->music_model->insert($data)) {
+    //         echo 'Audio record inserted successfully.';
+    //     } else {
+    //         echo 'Error inserting audio record: ' . $this->music_model->errors();
+    //     }
+    // }
+    public function saveEdit()
+    {
+        try {
+            // Fetch the music ID from the request
+            $musicID = $this->request->getVar('musicID');
+            
+            // Fetch the selected playlist ID from the request
+            $playlistID = $this->request->getVar('playlist');
+
+            // Prepare the data to be inserted into the music_playlists table
+            $data = [
+                'music_id' => $musicID,
+                'playlist_id' => $playlistID,
+            ];
+
+            // Insert the data into the music_playlists table
+            $insertResult = $this->playlist_track->insert($data);
+
+            if ($insertResult) {
+                // Redirect back to the music view or wherever appropriate
+                return redirect()->to('/music_view');
+            } else {
+                // Handle the case where the insertion fails
+                return redirect()->to('/music_view')->with('error', 'Failed to add music to playlist');
+            }
+        } catch (\Exception $e) {
+            // Handle any exceptions that occur during database operations
+            return redirect()->to('/music_view')->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+    
+    
+
+    public function playlist($playlistId)
+{
+    log_message('debug', 'Playlist ID: ' . $playlistId);
+  
+    $playlist = $this->playlist_model->find($playlistId);
+
+    if ($playlist) {
+       
+        $musicItems = $this->playlist_track->getMusicByPlaylist($playlistId);
+
+       
+        $data = [
+            'playlist' => $playlist,
+            'musicItems' => $musicItems,
+        ];
+
+        return view('playlist_view', $data); 
+    } else {
+      
+        return view('playlist_not_found'); 
     }
 
+    
+}
+
+
+
+  
+
+     public function delete($id)
+     {
+       
+         $referencesExist = $this->music_model->hasReferencesInMusicPlaylists($id);
+    
+         if ($referencesExist) {
+             
+             $this->music_model->removeReferencesInMusicPlaylists($id);
+         }
+    
+        
+         $this->music_model->delete($id);
+    
+         return redirect()->to('/music_view');
+     }
+
+    
+
+
+    
     public function search()
-    {
-        $searchQuery = $this->request->getGet('search');
+{
+    // Get the search query parameter from the request
+    $searchQuery = $this->request->getVar('search');
 
-        // Search for music data using $this->model->searchMusic($searchQuery)
-        $filteredMusicData = $this->model->searchMusic($searchQuery);
+    // Search for music data using $this->model->searchMusic($searchQuery)
+    $filteredMusicData = $this->music_model->searchMusic($searchQuery);
 
-        // Pass the filtered music data to your view.
-        $data = [
-            'music_view' => $filteredMusicData,
-            'playlist_model' => $this->playlist_model->findAll(),
-        ];
+    // Pass the filtered music data to your view.
+    $data = [
+        'music_view' => $filteredMusicData,
+        'playlist_model' => $this->playlist_model->findAll(),
+    ];
 
-        return view('music_view', $data);
-    }
+    return view('music_view', $data);
+}
 }
 ?>

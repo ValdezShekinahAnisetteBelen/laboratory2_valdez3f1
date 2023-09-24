@@ -13,7 +13,7 @@ class PlaylistsModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name'];
+    protected $allowedFields    = ['name','created_at'];
 
     // Dates
     protected $useTimestamps = false;

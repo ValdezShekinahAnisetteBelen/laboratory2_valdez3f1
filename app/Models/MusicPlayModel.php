@@ -15,6 +15,8 @@ class MusicPlayModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['music_id', 'playlist_id'];
 
+    
+
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
