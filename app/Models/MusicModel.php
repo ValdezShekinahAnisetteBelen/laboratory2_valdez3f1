@@ -15,6 +15,21 @@ class MusicModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['title', 'artist', 'file_path', 'duration'];
 
+    public function hasReferencesInMusicPlaylists($musicId)
+    {
+        // Check if there are any references to the given music ID in the music_playlists table
+        return $this->db->table('music_playlists')
+            ->where('music_id', $musicId)
+            ->countAllResults() > 0;
+    }
+
+    public function removeReferencesInMusicPlaylists($musicId)
+    {
+        // Remove references to the given music ID in the music_playlists table
+        $this->db->table('music_playlists')
+            ->where('music_id', $musicId)
+            ->delete();
+    }
     public function getAllMusic()
     {
         return $this->findAll();

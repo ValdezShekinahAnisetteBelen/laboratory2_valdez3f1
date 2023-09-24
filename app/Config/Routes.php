@@ -10,5 +10,7 @@ $routes->post('/insertAudio', 'MusicController::insertAudio');
 $routes->post('/save', 'MusicController::save');
 $routes->get('/delete/(:any)', 'MusicController::delete/$1');
 $routes->get('/music_view/(:any)', 'MusicController::music_view/$1'); 
-$routes->get('/music_view', 'MusicController::shekinah'); 
+$routes->get('/music_view', 'MusicController::search'); 
 $routes->get('/search', 'MusicController::search');
+$routes->post('/saveCreate', 'MusicController::saveCreate');
+

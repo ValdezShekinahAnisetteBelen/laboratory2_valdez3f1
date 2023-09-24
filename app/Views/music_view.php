@@ -116,17 +116,47 @@
             </div>
             <div class="modal-body">
                 <br>
-                <a href="/playlist/">your playlist</a>
+                <?php foreach ($playlist_model as $mus): ?>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <a href="/playlist/"><?= $mus['name'] ?></a>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+               
                 <br>
             </div>
             <div class="modal-footer">
                
                 <a href="#" data-bs-toggle="modal" data-bs-target="#createPlaylist">Create New +</a>
-               
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="createPlaylist" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Create Music</h5>
+            </div>
+            <div class="modal-body">
+                <br>
+                <form action="/saveCreate" method="post" class="form-border">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="playlist name" value="<?= isset($pro['name']) ? $pro['name'] : '' ?>">
+                    </div>
+                 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
