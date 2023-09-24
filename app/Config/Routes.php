@@ -20,4 +20,4 @@ $routes->get('/music_view', 'MusicController::search');
 $routes->get('/search', 'MusicController::search');
 
 $routes->post('/saveEdit', 'MusicController::saveEdit');
-
+$routes->get('/removeFromPlaylist/(:segment)', 'MusicController::removeFromPlaylist/$1');

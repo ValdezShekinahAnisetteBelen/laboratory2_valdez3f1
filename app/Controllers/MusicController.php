@@ -20,6 +20,7 @@ class MusicController extends Controller
 
     public function index()
     {
+        $where = 'home';
         // Fetch music data from the model using the getAllMusic method
         $musicData = $this->music_model->findAll();
         $playlist_model = $this->playlist_model->findAll();
@@ -28,6 +29,7 @@ class MusicController extends Controller
         $data = [
             'music_view' => $musicData,
             'playlist_model' => $playlist_model,
+            'where' => $where,
             
         ];
         // var_dump($data['music_view']);
@@ -131,6 +133,7 @@ class MusicController extends Controller
     public function viewPlaylist($playlistID)
     {
 
+        $where = 'playlist';
         $builder = $this->db->table('music_playlists');
 
         $builder->select('music_playlists.id, music.*');
@@ -144,6 +147,8 @@ class MusicController extends Controller
         $data = [
             'music_view' => $musicInPlaylist,
             'playlist_model' => $this->playlist_model->findAll(),
+            'where' => $where,
+  
           
         ];
 
@@ -175,6 +180,25 @@ class MusicController extends Controller
 
     
 // }
+public function removeFromPlaylist($musicID)
+{
+    echo"('debug', 'Removing music with ID: ' . $musicID)";
+    try {
+        // Perform the removal operation in your model
+        $result = $this->playlist_track->removeMusicFromPlaylist($musicID);
+
+        if ($result) {
+            return redirect()->to('/music_view');
+        } else {
+            // Handle errors as needed
+            echo "Failed to remove music from the playlist.";
+        }
+    } catch (\Exception $e) {
+        // Log the exception or display an error message
+        log_message('error', $e->getMessage());
+        echo "An error occurred: " . $e->getMessage();
+    }
+}
 
 
 
@@ -202,6 +226,8 @@ class MusicController extends Controller
     
     public function search()
 {
+    $where = 'home';
+
     // Get the search query parameter from the request
     $searchQuery = $this->request->getVar('search');
 
@@ -212,6 +238,7 @@ class MusicController extends Controller
     $data = [
         'music_view' => $filteredMusicData,
         'playlist_model' => $this->playlist_model->findAll(),
+        'where' => $where,
     ];
 
     return view('music_view', $data);

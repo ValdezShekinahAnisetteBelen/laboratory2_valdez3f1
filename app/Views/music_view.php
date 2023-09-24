@@ -47,6 +47,11 @@ include 'include/createplay.php';
             <div class="ex-button">
                 <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
             </div>
+            <?php if ($where !== 'home' && $where === 'playlist'): ?>
+    <a href="<?= site_url('/removeFromPlaylist/' . $music['id']) ?>" class="btn btn-danger btn-sm">
+        <i class="fas fa-minus"></i>
+    </a>
+    <?php endif ?>
         </li>
 
         <script>
@@ -72,7 +77,7 @@ include 'include/createplay.php';
   
 
 
-
+   
 
 
     <script>

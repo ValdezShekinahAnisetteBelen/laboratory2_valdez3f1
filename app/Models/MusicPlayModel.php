@@ -40,4 +40,15 @@ class MusicPlayModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function removeMusicFromPlaylist($musicID)
+{
+    $builder = $this->db->table('music_playlists');
+    $builder->where('music_id', $musicID);
+    $builder->delete();
+
+    // Return true if the deletion was successful, or false otherwise
+    return $this->db->affectedRows() > 0;
+}
+
 }
