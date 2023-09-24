@@ -2192,3 +2192,167 @@ in SYSTEMPATH\Model.php on line 873.
  4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
  6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+ERROR - 2023-09-24 22:24:37 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`music_player`.`music_playlists`, CONSTRAINT `music_playlists_ibfk_1` FOREIGN KEY (`music_id`) REFERENCES `music` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) in C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `mu...', 0)
+#1 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `mu...')
+#2 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `mu...')
+#3 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query('INSERT INTO `mu...', Array, false)
+#4 C:\laragon\www\laboratory2_valdez3f1\system\Model.php(319): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\laragon\www\laboratory2_valdez3f1\system\BaseModel.php(788): CodeIgniter\Model->doInsert(Array)
+#6 C:\laragon\www\laboratory2_valdez3f1\system\Model.php(715): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\laragon\www\laboratory2_valdez3f1\app\Controllers\MusicController.php(116): CodeIgniter\Model->insert(Array)
+#8 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(919): App\Controllers\MusicController->saveEdit()
+#9 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+#10 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\laboratory2_valdez3f1\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\laboratory2_valdez3f1\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2023-09-24 22:24:37 --> Cannot add or update a child row: a foreign key constraint fails (`music_player`.`music_playlists`, CONSTRAINT `music_playlists_ibfk_1` FOREIGN KEY (`music_id`) REFERENCES `music` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+in SYSTEMPATH\Database\BaseConnection.php on line 646.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query('INSERT INTO `music_playlists` (`music_id`, `playlist_id`) VALUES (:music_id:, :playlist_id:)', [...], false)
+ 2 SYSTEMPATH\Model.php(319): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(788): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(715): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\MusicController.php(116): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->saveEdit()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 22:44:42 --> Undefined variable $playlist
+in APPPATH\Views\include\manageplaylist.php on line 13.
+ 1 APPPATH\Views\include\manageplaylist.php(13): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $playlist', 'C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\include\\manageplaylist.php', 13)
+ 2 APPPATH\Views\music_view.php(7): include('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\include\\manageplaylist.php')
+ 3 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\music_view.php')
+ 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('music_view', [], true)
+ 6 APPPATH\Controllers\MusicController.php(35): view('music_view', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 22:44:44 --> Undefined variable $playlist
+in APPPATH\Views\include\manageplaylist.php on line 13.
+ 1 APPPATH\Views\include\manageplaylist.php(13): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $playlist', 'C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\include\\manageplaylist.php', 13)
+ 2 APPPATH\Views\music_view.php(7): include('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\include\\manageplaylist.php')
+ 3 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\music_view.php')
+ 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('music_view', [], true)
+ 6 APPPATH\Controllers\MusicController.php(35): view('music_view', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+ERROR - 2023-09-24 22:46:26 --> mysqli_sql_exception: Table 'music_player.music_playlist' doesn't exist in C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `music_p...', 0)
+#1 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `music_p...')
+#2 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `music_p...')
+#3 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_p...', Array, false)
+#4 C:\laragon\www\laboratory2_valdez3f1\app\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+#6 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+#7 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\laboratory2_valdez3f1\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\laboratory2_valdez3f1\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#10 {main}
+CRITICAL - 2023-09-24 22:46:26 --> Table 'music_player.music_playlist' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 646.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_playlist`.`id`, `music`.*
+FROM `music_playlist`
+JOIN `music` ON `music`.`music_id` = `music_playlist`.`music_id`
+WHERE `music_playlist`.`playlist_id` = :music_playlist.playlist_id:', [...], false)
+ 2 APPPATH\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+ERROR - 2023-09-24 22:48:37 --> mysqli_sql_exception: Table 'music_player.music_playlist' doesn't exist in C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `music_p...', 0)
+#1 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `music_p...')
+#2 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `music_p...')
+#3 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_p...', Array, false)
+#4 C:\laragon\www\laboratory2_valdez3f1\app\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+#6 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+#7 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\laboratory2_valdez3f1\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\laboratory2_valdez3f1\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#10 {main}
+CRITICAL - 2023-09-24 22:48:37 --> Table 'music_player.music_playlist' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 646.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_playlist`.`id`, `music`.*
+FROM `music_playlist`
+JOIN `music` ON `music`.`id` = `music_playlist`.`music_id`
+WHERE `music_playlist`.`playlist_id` = :music_playlist.playlist_id:', [...], false)
+ 2 APPPATH\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+ERROR - 2023-09-24 22:48:38 --> mysqli_sql_exception: Table 'music_player.music_playlist' doesn't exist in C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `music_p...', 0)
+#1 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `music_p...')
+#2 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `music_p...')
+#3 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_p...', Array, false)
+#4 C:\laragon\www\laboratory2_valdez3f1\app\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+#6 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+#7 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\laboratory2_valdez3f1\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\laboratory2_valdez3f1\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#10 {main}
+CRITICAL - 2023-09-24 22:48:38 --> Table 'music_player.music_playlist' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 646.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_playlist`.`id`, `music`.*
+FROM `music_playlist`
+JOIN `music` ON `music`.`id` = `music_playlist`.`music_id`
+WHERE `music_playlist`.`playlist_id` = :music_playlist.playlist_id:', [...], false)
+ 2 APPPATH\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+ERROR - 2023-09-24 22:49:17 --> mysqli_sql_exception: Unknown column 'music_playlist.id' in 'field list' in C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\laragon\www\laboratory2_valdez3f1\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `music_p...', 0)
+#1 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `music_p...')
+#2 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `music_p...')
+#3 C:\laragon\www\laboratory2_valdez3f1\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_p...', Array, false)
+#4 C:\laragon\www\laboratory2_valdez3f1\app\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+#6 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+#7 C:\laragon\www\laboratory2_valdez3f1\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\laboratory2_valdez3f1\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\laboratory2_valdez3f1\system\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\...')
+#10 {main}
+CRITICAL - 2023-09-24 22:49:17 --> Unknown column 'music_playlist.id' in 'field list'
+in SYSTEMPATH\Database\BaseConnection.php on line 646.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `music_playlist`.`id`, `music`.*
+FROM `music_playlists`
+JOIN `music` ON `music`.`id` = `music_playlists`.`music_id`
+WHERE `music_playlists`.`playlist_id` = :music_playlists.playlist_id:', [...], false)
+ 2 APPPATH\Controllers\MusicController.php(142): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+ 4 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 5 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 22:49:28 --> Invalid file: "main.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('main.php')
+ 2 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('main', [], true)
+ 3 APPPATH\Controllers\MusicController.php(150): view('main', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->viewPlaylist('15')
+ 5 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')

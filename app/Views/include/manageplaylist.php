@@ -10,7 +10,7 @@
                 <?php foreach ($playlist_model as $mus): ?>
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                        <a href="/playlist/"><?= $mus['name'] ?></a>
+                        <a href="/playlist/<?= $mus['id'] ?>?playlistID=<?= $mus['id'] ?>"><?= $mus['name'] ?></a>
                         </div>
                     </div>
                 <?php endforeach;?>

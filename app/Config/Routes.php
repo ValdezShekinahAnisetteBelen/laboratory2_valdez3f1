@@ -13,7 +13,7 @@ $routes->get('/music_view', 'MusicController::index');
 
 $routes->post('/insertAudio', 'MusicController::insertAudio'); 
 
-$routes->get('playlist/(:num)', 'MusicController::playlist/$1');
+$routes->get('/playlist/(:any)', 'MusicController::viewPlaylist/$1');
 
 $routes->get('/music_view/(:any)', 'MusicController::music_view/$1'); 
 $routes->get('/music_view', 'MusicController::search'); 

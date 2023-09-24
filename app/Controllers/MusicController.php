@@ -128,32 +128,53 @@ class MusicController extends Controller
         }
     }
     
-    
+    public function viewPlaylist($playlistID)
+    {
 
-    public function playlist($playlistId)
-{
-    log_message('debug', 'Playlist ID: ' . $playlistId);
-  
-    $playlist = $this->playlist_model->find($playlistId);
+        $builder = $this->db->table('music_playlists');
 
-    if ($playlist) {
-       
-        $musicItems = $this->playlist_track->getMusicByPlaylist($playlistId);
+        $builder->select('music_playlists.id, music.*');
 
-       
+        $builder->join('music', 'music.id = music_playlists.music_id');
+
+        $builder->where('music_playlists.playlist_id', $playlistID);
+
+        $musicInPlaylist = $builder->get()->getResultArray();
+
         $data = [
-            'playlist' => $playlist,
-            'musicItems' => $musicItems,
+            'music_view' => $musicInPlaylist,
+            'playlist_model' => $this->playlist_model->findAll(),
+          
         ];
 
-        return view('playlist_view', $data); 
-    } else {
-      
-        return view('playlist_not_found'); 
+        return view('music_view', $data);
     }
+    
+
+//     public function playlist($playlistId)
+// {
+//     log_message('debug', 'Playlist ID: ' . $playlistId);
+  
+//     $playlist = $this->playlist_model->find($playlistId);
+
+//     if ($playlist) {
+       
+//         $musicItems = $this->playlist_track->getMusicByPlaylist($playlistId);
+
+       
+//         $data = [
+//             'playlist' => $playlist,
+//             'musicItems' => $musicItems,
+//         ];
+
+//         return view('playlist_view', $data); 
+//     } else {
+      
+//         return view('playlist_not_found'); 
+//     }
 
     
-}
+// }
 
 
 

@@ -34,57 +34,46 @@ include 'include/createplay.php';
 
     <!-- Music Playlist -->
     <ul id="playlist">
-        <?php foreach ($music_view as $index => $music): ?>
-            <li class="playlist-item" data-src="<?= $music['file_path'] ?>">
-                <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black;">
-                    <span>Title: <?= $music['title'] ?> - Artist: <?= $music['artist'] ?></span>
-                </a>
+    <?php foreach ($music_view as $index => $music): ?>
+        <li class="playlist-item" data-src="<?= $music['file_path'] ?>">
+            <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black;">
+                <span>Title: <?= $music['title'] ?> - Artist: <?= $music['artist'] ?></span>
+            </a>
 
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#memod" data-id="<?= $music['id'] ?>">
-    <i class="fas fa-plus"></i>
-</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#memod" data-id="<?= $music['id'] ?>">
+                <i class="fas fa-plus"></i>
+            </button>
 
+            <div class="ex-button">
+                <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
+            </div>
+        </li>
 
-                <div class="ex-button">
-                    <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
-                </div>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+        <script>
+            // Add an event listener to each button individually
+            document.addEventListener('DOMContentLoaded', function () {
+                const addButton = document.querySelector('button[data-bs-target="#memod"][data-id="<?= $music['id'] ?>"]');
+                const musicIDInput = document.getElementById('musicID');
 
-    <h1>Playlist: <?= isset($playlist) ? $playlist['name'] : '' ?></h1>
-<ul id="playlist">
-    <?php if (isset($musicItems)) : ?>
-        <?php foreach ($musicItems as $index => $music): ?>
-            <li class="playlist-item" data-src="<?= $music['file_path'] ?>">
-                <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black;">
-                    <span>Title: <?= $music['title'] ?> - Artist: <?= $music['artist'] ?></span>
-                </a>
-                <!-- Add any other relevant buttons or actions here -->
-            </li>
-        <?php endforeach; ?>
-    <?php endif; ?>
-
+                addButton.addEventListener('click', function () {
+                    const musicID = addButton.getAttribute('data-id'); // Get the value from data-id attribute
+                    console.log('musicID:', musicID); // Check the value in the console
+                    musicIDInput.value = musicID; // Set the value in the input field
+                });
+            });
+        </script>
+    <?php endforeach; ?>
 </ul>
+
+ 
     <!-- Add any other HTML elements or styling as needed -->
 
 
   
 
 
-    <script>
-    // Add an event listener to the button
-document.addEventListener('DOMContentLoaded', function () {
-    const addButton = document.querySelector('button[data-bs-target="#memod"]');
-    const musicIDInput = document.getElementById('musicID');
 
-    addButton.addEventListener('click', function () {
-        const musicID = addButton.getAttribute('data-id'); // Get the value from data-id attribute
-        musicIDInput.value = musicID; // Set the value in the input field
-    });
-});
 
-</script>
 
     <script>
     function updateAudioSource() {
