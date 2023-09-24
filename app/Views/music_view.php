@@ -55,27 +55,27 @@
             background-color: #007bff;
             color: #fff;
         }
-                /* Add this CSS to your stylesheet */
+                
         .button-container {
         display: flex;
         align-items: center;
     }
 
     .plus-button {
-    background-color: blue; /* Blue background */
-    width: 30px; /* Adjust the width as needed */
-    height: 30px; /* Adjust the height as needed */
+    background-color: blue; 
+    width: 30px; 
+    height: 30px; 
     display: inline-block;
-    margin-right: 10px; /* Add some spacing between the button and the title */
+    margin-right: 10px; 
     text-align: center;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px; 
     cursor: pointer;
 }
 
 .plus-icon {
-    font-size: 24px; /* Adjust the font size as needed */
-    color: white; /* White plus sign */
-    line-height: 30px; /* Vertically center the plus sign */
+    font-size: 24px; 
+    color: white; 
+    line-height: 30px; 
 }
     .ex-button {
         width: 30px;
@@ -88,8 +88,11 @@
 
     .ex-icon {
         font-size: 24px;
-        color: blue; /* Change the color to blue for the trash bin icon */
+        color: blue; 
         line-height: 30px;
+    }
+    .play-link:hover span {
+        text-decoration: underline blue; 
     }
 
     .play-link-container {
@@ -97,6 +100,8 @@
         flex-grow: 1;
         align-items: center;
     }
+
+   
     </style>
 </head>
 <body>
@@ -106,7 +111,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">My Playlist</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -116,7 +121,7 @@
             </div>
             <div class="modal-footer">
                
-                <a href="#" data-bs-toggle="modal" data-bs-target="#createPlaylist">Create New</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#createPlaylist">Create New +</a>
                
             </div>
         </div>
@@ -173,10 +178,11 @@
     </div>
 </div>
 
-<form action="/" method="get">
-    <input type="search" name="search" placeholder="search song">
-    <button type="submit" class="btn btn-primary">search</button>
+<form action="/search" method="get">
+    <input type="search" name="search" placeholder="Search song">
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
+
 <h1>Music Player</h1>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     My Playlist
@@ -190,24 +196,22 @@
 <audio id="audio" controls autoplay></audio>
 
 <ul id="playlist">
-    
     <?php foreach ($music_view as $index => $music): ?>
         <li class="playlist-item" data-src="<?= $music['file_path'] ?>">
+        <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black; display: flex; align-items: center; justify-content: center;">
+            <span style="border-bottom: 1px solid transparent;">Title: <?= $music['title'] ?> - Artist: <?= $music['artist'] ?></span>
+        </a>
             <div class="button-container">
                 <div class="plus-button">
                     <div class="plus-icon">+</div>
                 </div>
                 <div class="ex-button">
-               <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
+                    <a href="/delete/<?= $music['id'] ?>" class="fas fa-trash ex-icon"></a>
                 </div>
                 <div class="play-link-container">
-                <a href="#" class="play-link" data-index="<?= $index ?>" style="text-decoration: none; color: black; display: flex; align-items: center; justify-content: center;">
-                    <?= $music['title'] ?>
-                </a>
-
-                </div>
-            </div>
+                </div>.
         </li>
+        </div>
     <?php endforeach; ?>
 </ul>
 
@@ -239,14 +243,13 @@
         const displayFilePathInput = document.getElementById('display_file_path');
         const actualFilePathInput = document.getElementById('actual_file_path');
 
-        // Get the updated file path from the hidden input
         const filePath = actualFilePathInput.value;
 
-        // Update the audio source and play it
+       
         audio.src = filePath;
         audio.play();
 
-        return true; // Continue with the form submission
+        return true;
     }
 </script>
     <script>
@@ -257,10 +260,10 @@
 
         if (fileInput.files.length > 0) {
             const selectedFile = fileInput.files[0];
-            const filePath = selectedFile.name; // Get the file name
+            const filePath = selectedFile.name; 
             const name = "http://localhost/laboratory2_valdez3f1/";
-            displayFilePathInput.value =  name.concat(filePath); // Update the visible input field
-            actualFilePathInput.value = filePath; // Store the actual file path in a hidden field
+            displayFilePathInput.value =  name.concat(filePath); 
+            actualFilePathInput.value = filePath; 
         }
     }
 </script>
@@ -275,17 +278,17 @@
             if (trackIndex >= 0 && trackIndex < playlistItems.length) {
                 const track = playlistItems[trackIndex];
                 const trackSrc = track.getAttribute('data-src');
-                audio.src = trackSrc; // Set the audio source to the clicked track's data-src
-                audio.play(); // Play the audio
+                audio.src = trackSrc; 
+                audio.play(); 
             }
         }
 
         playlistItems.forEach((item, index) => {
             const playLink = item.querySelector('.play-link');
             playLink.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent the default link behavior
+                e.preventDefault(); 
                 const dataIndex = playLink.getAttribute('data-index');
-                playTrack(dataIndex); // Call playTrack when a playlist item link is clicked
+                playTrack(dataIndex); 
             });
         });
     });

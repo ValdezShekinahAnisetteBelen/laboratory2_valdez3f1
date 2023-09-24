@@ -19,6 +19,24 @@ class MusicModel extends Model
     {
         return $this->findAll();
     }
+    public function searchMusic($searchQuery)
+    {
+        
+    $terms = explode(' ', $searchQuery);
+
+    $this->groupStart();
+
+    foreach ($terms as $term) {
+        $this->like('title', $term);
+        $this->orLike('artist', $term);
+    }
+
+    // Close the group
+    $this->groupEnd();
+
+    // Get the search results
+    return $this->findAll();
+    }
 
     // Dates
     protected $useTimestamps = false;

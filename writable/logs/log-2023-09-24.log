@@ -1,0 +1,56 @@
+CRITICAL - 2023-09-24 05:31:39 --> Unmatched '}'
+in APPPATH\Controllers\MusicController.php on line 91.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(285): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Controllers\\MusicController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(263): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\MusicController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\MusicController')
+ 4 SYSTEMPATH\CodeIgniter.php(877): class_exists('\\App\\Controllers\\MusicController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(481): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 05:31:57 --> Undefined variable $filteredMusicData
+in APPPATH\Controllers\MusicController.php on line 81.
+ 1 APPPATH\Controllers\MusicController.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $filteredMusicData', 'C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Controllers\\MusicController.php', 81)
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->search()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 05:32:33 --> Call to undefined method App\Models\MusicModel::searchMusic
+in SYSTEMPATH\Model.php on line 873.
+ 1 APPPATH\Controllers\MusicController.php(76): CodeIgniter\Model->__call('searchMusic', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->search()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 05:34:57 --> Call to undefined method App\Models\MusicModel::searchMusic
+in SYSTEMPATH\Model.php on line 873.
+ 1 APPPATH\Controllers\MusicController.php(80): CodeIgniter\Model->__call('searchMusic', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->search()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 05:50:16 --> Unclosed '{' on line 8
+in APPPATH\Controllers\MusicController.php on line 90.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(285): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Controllers\\MusicController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(263): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\MusicController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\MusicController')
+ 4 SYSTEMPATH\CodeIgniter.php(877): class_exists('\\App\\Controllers\\MusicController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(481): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 06:09:24 --> Undefined variable $index
+in APPPATH\Views\music_view.php on line 194.
+ 1 APPPATH\Views\music_view.php(194): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $index', 'C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\music_view.php', 194)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\laragon\\www\\laboratory2_valdez3f1\\app\\Views\\music_view.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1188): CodeIgniter\View\View->render('music_view', [], true)
+ 5 APPPATH\Controllers\MusicController.php(61): view('music_view', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->shekinah()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
