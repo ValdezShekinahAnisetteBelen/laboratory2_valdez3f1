@@ -2447,3 +2447,11 @@ in SYSTEMPATH\Database\BaseConnection.php on line 646.
  8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')
+CRITICAL - 2023-09-24 23:58:39 --> Too few arguments to function App\Models\MusicPlayModel::removeMusicFromPlaylist(), 1 passed in C:\laragon\www\laboratory2_valdez3f1\app\Controllers\MusicController.php on line 188 and exactly 2 expected
+in APPPATH\Models\MusicPlayModel.php on line 44.
+ 1 APPPATH\Controllers\MusicController.php(188): App\Models\MusicPlayModel->removeMusicFromPlaylist('21')
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\MusicController->removeFromPlaylist('21')
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MusicController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\laragon\\www\\laboratory2_valdez3f1\\public\\index.php')

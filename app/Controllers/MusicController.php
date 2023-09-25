@@ -29,6 +29,7 @@ class MusicController extends Controller
         $data = [
             'music_view' => $musicData,
             'playlist_model' => $playlist_model,
+            'playlist_track'=> $this->playlist_track->findAll(),
             'where' => $where,
             
         ];
@@ -148,6 +149,7 @@ class MusicController extends Controller
             'music_view' => $musicInPlaylist,
             'playlist_model' => $this->playlist_model->findAll(),
             'where' => $where,
+            'playlist_track'=> $this->playlist_track->findAll(),
   
           
         ];
@@ -182,7 +184,7 @@ class MusicController extends Controller
 // }
 public function removeFromPlaylist($musicID)
 {
-    echo"('debug', 'Removing music with ID: ' . $musicID)";
+    
     try {
         // Perform the removal operation in your model
         $result = $this->playlist_track->removeMusicFromPlaylist($musicID);
@@ -239,6 +241,7 @@ public function removeFromPlaylist($musicID)
         'music_view' => $filteredMusicData,
         'playlist_model' => $this->playlist_model->findAll(),
         'where' => $where,
+        'playlist_track'=> $this->playlist_track->findAll(),
     ];
 
     return view('music_view', $data);
